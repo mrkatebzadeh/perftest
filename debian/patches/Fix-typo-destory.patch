@@ -1,0 +1,138 @@
+From a1f707bb8c36e4b63e7b0b7bafbc72b4501322fc Mon Sep 17 00:00:00 2001
+From: Benjamin Drung <benjamin.drung@profitbricks.com>
+Date: Thu, 27 Jul 2017 19:00:38 +0200
+Subject: [PATCH] Fix typo destory -> destroy
+
+Signed-off-by: Benjamin Drung <benjamin.drung@profitbricks.com>
+---
+ src/perftest_resources.c          | 2 +-
+ src/raw_ethernet_send_burst_lat.c | 6 +++---
+ src/raw_ethernet_send_bw.c        | 6 +++---
+ src/raw_ethernet_send_lat.c       | 6 +++---
+ src/send_bw.c                     | 4 ++--
+ 5 files changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/src/perftest_resources.c b/src/perftest_resources.c
+index 4a9b658..928d627 100755
+--- a/src/perftest_resources.c
++++ b/src/perftest_resources.c
+@@ -4971,7 +4971,7 @@ cleaning:
+ 		if (ibv_destroy_flow(flow_create_result[flow_index])) {
+ 		#endif
+ 			perror("error");
+-			fprintf(stderr, "Couldn't Destory flow\n");
++			fprintf(stderr, "Couldn't destroy flow\n");
+ 		}
+ 	}
+ 	free(flow_rules);
+diff --git a/src/raw_ethernet_send_burst_lat.c b/src/raw_ethernet_send_burst_lat.c
+index 712921c..ccc077c 100755
+--- a/src/raw_ethernet_send_burst_lat.c
++++ b/src/raw_ethernet_send_burst_lat.c
+@@ -258,7 +258,7 @@ int main(int argc, char *argv[])
+ 	if (user_param.machine == CLIENT)
+ 		print_report_lat(&user_param);
+ 
+-	/* destory promisc flow */
++	/* destroy promisc flow */
+ 	if (user_param.use_promiscuous) {
+ 		#ifdef HAVE_RAW_ETH_EXP
+ 		if (ibv_exp_destroy_flow(flow_promisc)) {
+@@ -266,7 +266,7 @@ int main(int argc, char *argv[])
+ 		if (ibv_destroy_flow(flow_promisc)) {
+ 		#endif
+ 			perror("error");
+-			fprintf(stderr, "Couldn't Destory promisc flow\n");
++			fprintf(stderr, "Couldn't destroy promisc flow\n");
+ 			return FAILURE;
+ 		}
+ 	}
+@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
+ 		if (ibv_destroy_flow(flow_create_result[i])) {
+ 		#endif
+ 			perror("error");
+-			fprintf(stderr, "Couldn't Destory flow\n");
++			fprintf(stderr, "Couldn't destroy flow\n");
+ 			return FAILURE;
+ 		}
+ 
+diff --git a/src/raw_ethernet_send_bw.c b/src/raw_ethernet_send_bw.c
+index 7636e94..e3ec1b0 100755
+--- a/src/raw_ethernet_send_bw.c
++++ b/src/raw_ethernet_send_bw.c
+@@ -421,7 +421,7 @@ int main(int argc, char *argv[])
+ 				if (ibv_destroy_flow(flow_create_result[flow_index + qp_index * user_param.flows])) {
+ 				#endif
+ 					perror("error");
+-					fprintf(stderr, "Couldn't Destory flow\n");
++					fprintf(stderr, "Couldn't destroy flow\n");
+ 					return FAILURE;
+ 				}
+ 			}
+@@ -436,7 +436,7 @@ int main(int argc, char *argv[])
+ 				if (ibv_destroy_flow(flow_promisc[qp_index])) {
+ 				#endif
+ 					perror("error");
+-					fprintf(stderr, "Couldn't Destory flow\n");
++					fprintf(stderr, "Couldn't destroy flow\n");
+ 					return FAILURE;
+ 				}
+ 			}
+@@ -452,7 +452,7 @@ int main(int argc, char *argv[])
+ 				if (ibv_destroy_flow(flow_sniffer[qp_index])) {
+ 				#endif
+ 					perror("error");
+-					fprintf(stderr, "Couldn't Destory sniffer flow\n");
++					fprintf(stderr, "Couldn't destroy sniffer flow\n");
+ 					return FAILURE;
+ 				}
+ 			}
+diff --git a/src/raw_ethernet_send_lat.c b/src/raw_ethernet_send_lat.c
+index b272b64..a9e3715 100755
+--- a/src/raw_ethernet_send_lat.c
++++ b/src/raw_ethernet_send_lat.c
+@@ -253,7 +253,7 @@ int main(int argc, char *argv[])
+ 	user_param.test_type == ITERATIONS ? print_report_lat(&user_param) :
+ 		print_report_lat_duration(&user_param);
+ 
+-	/* destory promisc flow */
++	/* destroy promisc flow */
+ 	if (user_param.use_promiscuous) {
+ 		#ifdef HAVE_RAW_ETH_EXP
+ 		if (ibv_exp_destroy_flow(flow_promisc)) {
+@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
+ 		if (ibv_destroy_flow(flow_promisc)) {
+ 		#endif
+ 			perror("error");
+-			fprintf(stderr, "Couldn't Destory promisc flow\n");
++			fprintf(stderr, "Couldn't destroy promisc flow\n");
+ 			return FAILURE;
+ 		}
+ 	}
+@@ -274,7 +274,7 @@ int main(int argc, char *argv[])
+ 		if (ibv_destroy_flow(flow_create_result[i])) {
+ 		#endif
+ 			perror("error");
+-			fprintf(stderr, "Couldn't Destory flow\n");
++			fprintf(stderr, "Couldn't destroy flow\n");
+ 			return FAILURE;
+ 		}
+ 
+diff --git a/src/send_bw.c b/src/send_bw.c
+index d28793a..41cd836 100755
+--- a/src/send_bw.c
++++ b/src/send_bw.c
+@@ -554,9 +554,9 @@ int main(int argc, char *argv[])
+ 		fprintf(stderr," Trying to close this side resources\n");
+ 	}
+ 
+-	/* Destory all test resources, including Mcast if exists */
++	/* Destroy all test resources, including Mcast if exists */
+ 	if (send_destroy_ctx(&ctx,&user_param,&mcg_params)) {
+-		fprintf(stderr,"Couldn't Destory all SEND resources\n");
++		fprintf(stderr,"Couldn't destroy all SEND resources\n");
+ 		return FAILURE;
+ 	}
+ 	if (user_param.work_rdma_cm == ON) {
+-- 
+2.14.1

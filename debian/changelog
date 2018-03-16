@@ -1,5 +1,110 @@
-perftest (3.4-0.1) stable; urgency=low
+perftest (4.1+0.2.g770623f-1) unstable; urgency=medium
 
-  * Initial release For Ubuntu (Closes: #182805)
+  * New upstream release (Closes: #873089)
+  * Take perftest under the wing of Debian HPC Team
+  * Remove Ana Beatriz Guerrero Lopez from uploaders and add myself.
+    Thanks Ana for all your work!
+  * Update debian/watch and homepage URL to point to GitHub
+  * Refresh patches
+  * Raise priority to optional (priority extra is gone)
+  * Bump Standards-Version to 4.1.2
+  * Use bash for run_perftest_multi_devices (it uses bashisms)
+  * Point Vcs-* URLs to salsa.debian.org
+  * Update debian/copyright (use copyright format 1.0)
 
- -- Gil Rockah <gilr@dev.mellanox.co.il>  Sun, 29 Mar 2015 10:58:00 +0200
+ -- Benjamin Drung <benjamin.drung@profitbricks.com>  Wed, 27 Dec 2017 14:35:45 +0100
+
+perftest (3.4+0.6.gc3435c2-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release
+  * Refresh patches
+  * Fix spelling availible -> available
+
+ -- Benjamin Drung <benjamin.drung@profitbricks.com>  Mon, 02 Jan 2017 13:52:27 +0100
+
+perftest (3.0+3.2.g8ade541-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Refresh patches
+  * Drop debian/dirs (not needed)
+  * Run autoreconf on build
+  * Point Vcs-* fields to HTTPS URLs
+  * Bump Standards-Version to 3.9.8 (no changes needed)
+  * Fix spelling destory -> destroy
+  * Enable hardening and fix ignorance of CFLAGS
+
+ -- Benjamin Drung <benjamin.drung@profitbricks.com>  Mon, 22 Aug 2016 11:58:05 +0200
+
+perftest (3.0+0.18.gb464d59-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update to Standards-Version 3.9.7, no changes required.
+  * Update Vcs-Browser to use HTTPS.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Wed, 30 Mar 2016 09:41:59 +0200
+
+perftest (3.0+0.16.gb2f2e82-2) unstable; urgency=medium
+
+  * Set Architecture field to linux-any. (Closes:#814537)
+  * Add patch to fix building on s390x. (Closes:#814547)
+    Thanks to dann frazier.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Sat, 13 Feb 2016 15:31:28 +0100
+
+perftest (3.0+0.16.gb2f2e82-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release 3.0-0.16.gb2f2e82
+  * Add patch to fix spelling errors in binaries.
+
+ -- Mehdi Dogguy <mehdi@debian.org>  Thu, 31 Dec 2015 11:04:49 +0100
+
+perftest (3.0+0.9.g214990b-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update to Standards-Version 3.9.6, no changes required.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Tue, 21 Jul 2015 18:24:55 +0200
+
+perftest (2.3+0.12.gcb5b746-1) unstable; urgency=medium
+
+  * New upstream release: 2.3-0.12.gcb5b746
+  * Add support for ppc64el. Thanks to Breno Leitao. (Closes: #751792)
+  * Remove README.Debian and just adapt the version string from upstream to
+    Debian.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Thu, 04 Sep 2014 14:08:17 +0200
+
+perftest (2.2.0.19-1) unstable; urgency=medium
+
+  * New upstream release: 2.2-0.19.g1fec59d
+  * Add README.Debian with information about versioning and repackaging
+    upstream tarball.
+  * Switch packaging to dh and Source format 3.0.
+  * Update build-depends, add libibumad-dev.
+  * Clean the Depends line of perftest, the deps are added automatically
+    by debhelper.
+  * Remove all current Uploaders, they're welcome back anytime.
+    Add myself to Uploaders
+  * Update homepage.
+  * Update Standards-Version to 3.9.5, no changes required.
+  * Add fields Vcs-Browser/Vcs-Git.
+  * Add watch file.
+  * Update manages shipped, remove those that are a placeholder.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Thu, 03 Jul 2014 14:20:30 +0200
+
+perftest (1.2-OFED-1.4.2-2) unstable; urgency=low
+
+  * FTBFS: get_clock.h:76:23: error: asm/timex.h: No such file or
+    directory (Closes: #560264)
+
+ -- Benoit Mortier <benoit.mortier@opensides.be>  Mon, 21 Dec 2009 00:14:15 +0100
+
+perftest (1.2-OFED-1.4.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #539829)
+
+ -- Benoit Mortier <benoit.mortier@opensides.be>  Wed, 21 Oct 2009 11:32:00 +0100

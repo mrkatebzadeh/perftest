@@ -1,10 +1,10 @@
 Name:           perftest
 Summary:        IB Performance tests
-Version: 3.4
-Release: 0.9.g98a9a17
+Version: 4.1
+Release: 0.2.g770623f
 License:        BSD 3-Clause, GPL v2 or later
 Group:          Productivity/Networking/Diagnostic
-Source: http://www.openfabrics.org/downloads/perftest-3.4-0.9.g98a9a17.tar.gz
+Source: http://www.openfabrics.org/downloads/perftest-4.1-0.2.g770623f.tar.gz
 Url:            http://www.openfabrics.org
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  libibverbs-devel librdmacm-devel libibumad-devel

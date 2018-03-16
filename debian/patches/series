@@ -1,0 +1,6 @@
+0001-Fix-spelling-errors-in-binaries.patch
+Fix-typos-in-s390x-support.patch
+Fix-typo-destory.patch
+fix-cflags.patch
+Fix-typo-availible.patch
+Use-bash-for-run_perftest_multi_devices.patch

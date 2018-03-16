@@ -1,0 +1,167 @@
+From 8faf600b1d7ef3fb475149c701dded47407f9837 Mon Sep 17 00:00:00 2001
+From: Mehdi Dogguy <mehdi@debian.org>
+Date: Thu, 31 Dec 2015 11:02:59 +0100
+Subject: [PATCH] Fix spelling errors in binaries
+
+Signed-off-by: Benjamin Drung <benjamin.drung@profitbricks.com>
+---
+ src/atomic_bw.c              | 4 ++--
+ src/perftest_communication.c | 6 +++---
+ src/perftest_resources.c     | 2 +-
+ src/perftest_resources.h     | 2 +-
+ src/raw_ethernet_send_bw.c   | 4 ++--
+ src/read_bw.c                | 2 +-
+ src/send_bw.c                | 4 ++--
+ src/write_bw.c               | 2 +-
+ 8 files changed, 13 insertions(+), 13 deletions(-)
+
+diff --git a/src/atomic_bw.c b/src/atomic_bw.c
+index faaf1bf..1b08235 100755
+--- a/src/atomic_bw.c
++++ b/src/atomic_bw.c
+@@ -274,7 +274,7 @@ int main(int argc, char *argv[])
+ 		}
+ 
+ 		if (run_iter_bw(&ctx, &user_param)) {
+-			fprintf(stderr, " Error occured in run_iter function\n");
++			fprintf(stderr, " Error occurred in run_iter function\n");
+ 			return FAILURE;
+ 		}
+ 
+@@ -303,7 +303,7 @@ int main(int argc, char *argv[])
+ 	} else if (user_param.test_method == RUN_INFINITELY) {
+ 
+ 		if (run_iter_bw_infinitely(&ctx, &user_param)) {
+-			fprintf(stderr, " Error occured while running infinitely! aborting ...\n");
++			fprintf(stderr, " Error occurred while running infinitely! aborting ...\n");
+ 			return FAILURE;
+ 		}
+ 	}
+diff --git a/src/perftest_communication.c b/src/perftest_communication.c
+index 7ad74cc..714e748 100755
+--- a/src/perftest_communication.c
++++ b/src/perftest_communication.c
+@@ -677,7 +677,7 @@ static int ethernet_server_connect(struct perftest_comm *comm)
+ 	hints.ai_socktype = SOCK_STREAM;
+ 
+ 	if (check_add_port(&service,comm->rdma_params->port,NULL,&hints,&res)) {
+-		fprintf(stderr, "Problem in resolving basic adress and port\n");
++		fprintf(stderr, "Problem in resolving basic address and port\n");
+ 		return 1;
+ 	}
+ 
+@@ -871,7 +871,7 @@ int rdma_client_connect(struct pingpong_context *ctx,struct perftest_parameters
+ 	hints.ai_socktype = SOCK_STREAM;
+ 
+ 	if (check_add_port(&service,user_param->port,user_param->servername,&hints,&res)) {
+-		fprintf(stderr, "Problem in resolving basic adress and port\n");
++		fprintf(stderr, "Problem in resolving basic address and port\n");
+ 		return FAILURE;
+ 	}
+ 
+@@ -1069,7 +1069,7 @@ int rdma_server_connect(struct pingpong_context *ctx,
+ 	hints.ai_socktype = SOCK_STREAM;
+ 
+ 	if (check_add_port(&service,user_param->port,user_param->servername,&hints,&res)) {
+-		fprintf(stderr, "Problem in resolving basic adress and port\n");
++		fprintf(stderr, "Problem in resolving basic address and port\n");
+ 		return FAILURE;
+ 	}
+ 
+diff --git a/src/perftest_resources.c b/src/perftest_resources.c
+index 5ff2635..4a9b658 100755
+--- a/src/perftest_resources.c
++++ b/src/perftest_resources.c
+@@ -3727,7 +3727,7 @@ int run_iter_bw_infinitely_server(struct pingpong_context *ctx, struct perftest_
+ 			}
+ 
+ 		} else if (ne < 0) {
+-			fprintf(stderr, "Poll Recieve CQ failed %d\n", ne);
++			fprintf(stderr, "Poll Receive CQ failed %d\n", ne);
+ 			return_value = FAILURE;
+ 			goto cleaning;
+ 		}
+diff --git a/src/perftest_resources.h b/src/perftest_resources.h
+index 9e12c47..3e87a29 100755
+--- a/src/perftest_resources.h
++++ b/src/perftest_resources.h
+@@ -113,7 +113,7 @@
+ /* UD addition to the buffer. */
+ #define IF_UD_ADD(type,cache_line_size) ((type == UD) ? (cache_line_size) : (0))
+ 
+-/* Macro that defines the adress where we write in RDMA.
++/* Macro that defines the address where we write in RDMA.
+  * If message size is smaller then CACHE_LINE size then we write in CACHE_LINE jumps.
+  */
+ #define INC(size,cache_line_size) ((size > cache_line_size) ? ((size%cache_line_size == 0) ?  \
+diff --git a/src/raw_ethernet_send_bw.c b/src/raw_ethernet_send_bw.c
+index 3d338d0..7636e94 100755
+--- a/src/raw_ethernet_send_bw.c
++++ b/src/raw_ethernet_send_bw.c
+@@ -398,14 +398,14 @@ int main(int argc, char *argv[])
+ 		if (user_param.machine == CLIENT) {
+ 
+ 			if(run_iter_bw_infinitely(&ctx, &user_param)) {
+-				fprintf(stderr, " Error occured while running infinitely! aborting ...\n");
++				fprintf(stderr, " Error occurred while running infinitely! aborting ...\n");
+ 				return FAILURE;
+ 			}
+ 
+ 		} else if (user_param.machine == SERVER) {
+ 
+ 			if(run_iter_bw_infinitely_server(&ctx, &user_param)) {
+-				fprintf(stderr, " Error occured while running infinitely on server! aborting ...\n");
++				fprintf(stderr, " Error occurred while running infinitely on server! aborting ...\n");
+ 				return FAILURE;
+ 			}
+ 		}
+diff --git a/src/read_bw.c b/src/read_bw.c
+index 28f087d..4b03863 100755
+--- a/src/read_bw.c
++++ b/src/read_bw.c
+@@ -352,7 +352,7 @@ int main(int argc, char *argv[])
+ 		ctx_set_send_wqes(&ctx,&user_param,rem_dest);
+ 
+ 		if(run_iter_bw_infinitely(&ctx,&user_param)) {
+-			fprintf(stderr," Error occured while running! aborting ...\n");
++			fprintf(stderr," Error occurred while running! aborting ...\n");
+ 			return FAILURE;
+ 		}
+ 	}
+diff --git a/src/send_bw.c b/src/send_bw.c
+index 3a41041..d28793a 100755
+--- a/src/send_bw.c
++++ b/src/send_bw.c
+@@ -529,14 +529,14 @@ int main(int argc, char *argv[])
+ 		if (user_param.machine == CLIENT) {
+ 
+ 			if(run_iter_bw_infinitely(&ctx,&user_param)) {
+-				fprintf(stderr," Error occured while running infinitely! aborting ...\n");
++				fprintf(stderr," Error occurred while running infinitely! aborting ...\n");
+ 				return FAILURE;
+ 			}
+ 
+ 		} else if (user_param.machine == SERVER) {
+ 
+ 			if(run_iter_bw_infinitely_server(&ctx,&user_param)) {
+-				fprintf(stderr," Error occured while running infinitely on server! aborting ...\n");
++				fprintf(stderr," Error occurred while running infinitely on server! aborting ...\n");
+ 				return FAILURE;
+ 			}
+ 		}
+diff --git a/src/write_bw.c b/src/write_bw.c
+index 98f6f9b..1c26c45 100755
+--- a/src/write_bw.c
++++ b/src/write_bw.c
+@@ -350,7 +350,7 @@ int main(int argc, char *argv[])
+ 		ctx_set_send_wqes(&ctx,&user_param,rem_dest);
+ 
+ 		if(run_iter_bw_infinitely(&ctx,&user_param)) {
+-			fprintf(stderr," Error occured while running infinitely! aborting ...\n");
++			fprintf(stderr," Error occurred while running infinitely! aborting ...\n");
+ 			return FAILURE;
+ 		}
+ 	}
+-- 
+2.14.1
+

@@ -1,0 +1,67 @@
+.TH ib_write_bw_postlist 1 "February 20, 2008" "perftest" "User Commands"
+
+.SH NAME
+ib_write_bw_postlist \- RDMA write post list bandwidth test
+
+.SH SYNOPSIS
+.B ib_write_bw_postlist  [
+.I options 
+.B ] [
+.I server IP address 
+.B ]
+
+.SH DESCRIPTION 
+This program tests the bandwidth of RMDA write transactions.
+
+.SH OPTIONS
+.TP
+.B -p, --port=<port>         
+listen on/connect to port <port> (default 18515)
+.TP 
+.B  -d, --ib-dev=<dev>        
+use IB device <dev> (default first device found)
+.TP  
+.B -i, --ib-port=<port>      
+use port <port> of IB device (default 1)
+.TP  
+.B -c, --connection=<RC/UC>  
+connection type RC/UC (default RC)
+.TP  
+.B -m, --mtu=<mtu>           
+mtu size (256 - 4096. default for hermon is 2048)
+.TP  
+.B -g, --post=<num of posts> 
+number of posts for each qp in the chain (default tx_depth)
+.TP
+.B  -q, --qp=<num of qp's>    
+Num of qp's(default 1)
+.TP 
+.B -s, --size=<size>         
+size of message to exchange (default 65536)
+.TP
+.B  -a, --all
+Run sizes from 2 till 2^23
+.TP  
+.B -t, --tx-depth=<dep>      
+size of tx queue (default 100)
+.TP  
+.B -n, --iters=<iters>       
+number of exchanges (at least 2, default 5000)
+.TP  
+.B -I, --inline_size=<size>  
+max size of message to be sent in inline mode (default 400)
+.TP  
+.B -b, --bidirectional       
+measure bidirectional bandwidth (default unidirectional)
+.TP  
+.B -V, --version             
+display version number
+.TP  
+.B -F, --CPU-freq            
+do not fail even if cpufreq_ondemand module is loaded
+
+
+.SH AUTHOR
+.TP
+Guy Coates  < gmpc@sanger.ac.uk >
+

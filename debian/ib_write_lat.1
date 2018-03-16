@@ -1,0 +1,61 @@
+.TH ib_write_lat 1 "February 20, 2008" "perftest" "User Commands"
+
+.SH NAME
+ib_write_lat \- RDMA write latency test
+
+.SH SYNOPSIS
+.B ib_write_lat  [
+.I options 
+.B ] [
+.I server IP address 
+.B ]
+
+.SH DESCRIPTION 
+This program tests the latency  of RMDA write transactions.
+
+.SH OPTIONS
+.TP  
+.B -p, --port=<port>            
+listen on/connect to port <port> (default: 18515)
+.TP 
+.B -m, --mtu=<mtu>              
+mtu size (default: 1024)
+.TP  
+.B -d, --ib-dev=<dev>           
+use IB device <dev> (default: first device found)
+.TP  
+.B -i, --ib-port=<port>         
+use port <port> of IB device (default: 1)
+.TP 
+.B -s, --size=<size>            
+size of message to exchange (default: 1)
+.TP
+.B -a, --all                    
+run sizes from 2 till 2^23
+.TP 
+.B -t, --tx-depth=<dep>         
+size of tx queue (default: 50)
+.TP 
+.B -n, --iters=<iters>          
+number of exchanges (at least 100, default: 1000)
+.TP 
+.B -C, --report-cycles          
+report times in cpu cycle units (default: microseconds)
+.TP 
+.B -H, --report-histogram       
+print out all results (default: print summary only)
+.TP 
+.B -U, --report-unsorted        
+(implies -H) print out unsorted results (default: sorted)
+.TP
+.B -V, --version                
+display version number
+
+
+.SH AUTHOR
+.TP
+Guy Coates  < gmpc@sanger.ac.uk >
+
+
+
+

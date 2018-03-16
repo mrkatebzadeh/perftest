@@ -1,0 +1,36 @@
+From: dann frazier <dann.frazier@canonical.com>
+Subject: [PATCH] perftest: Fix typos in s390x support
+
+Commit 472171fbd5a8 added support for s390x systems, but it looks like the
+changeset got corrupted between submit and commit, resulting in a compile
+failure. The version on the mailing list looks fine:
+
+    http://www.spinics.net/lists/linux-rdma/msg19592.html
+
+Signed-off-by: dann frazier <dann.frazier@canonical.com>
+Bug-Ubuntu: 1545010
+Forwarded: http://www.spinics.net/lists/linux-rdma/msg33357.html
+Last-Update: 2017-01-02
+
+--- a/README
++++ b/README
+@@ -237,7 +237,7 @@
+     ./configure --disable-verbs_exp
+     make
+ 
+- 6. In te x390x platform virtualized environment the results shown by package test applications can be incorrect.
++ 6. In the s390x platform virtualized environment the results shown by package test applications can be incorrect.
+ 
+  7. perftest-2.3 release includes support for dualport VPI test - port1-Ethernet , port2-IB. (in addition to Eth:Eth, IB:IB)
+     Currently, running dualport when port1-IB , port2-Ethernet still not working.
+--- a/src/get_clock.c
++++ b/src/get_clock.c
+@@ -213,7 +213,7 @@
+ double get_cpu_mhz(int no_cpu_freq_warn)
+ {
+ 	#ifdef __s390x__
+-	return sample_get_cpu_mgz();
++	return sample_get_cpu_mhz();
+ 	#else
+ 	double sample, proc, delta;
+ 	sample = sample_get_cpu_mhz();

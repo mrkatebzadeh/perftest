@@ -1,0 +1,6 @@
+debian/ib_read_bw.1
+debian/ib_read_lat.1
+debian/ib_send_bw.1
+debian/ib_send_lat.1
+debian/ib_write_bw.1
+debian/ib_write_lat.1

@@ -1,0 +1,27 @@
+From 9093296f8af3a1befb2063c1d38b94808edb1e3b Mon Sep 17 00:00:00 2001
+From: Benjamin Drung <benjamin.drung@profitbricks.com>
+Date: Wed, 27 Dec 2017 14:09:33 +0100
+Subject: [PATCH] Use bash for run_perftest_multi_devices
+
+run_perftest_multi_devices uses bash specific constructs like arrays.
+Therefore let is use bash instead of sh (which points to dash on
+Debian).
+
+Signed-off-by: Benjamin Drung <benjamin.drung@profitbricks.com>
+---
+ run_perftest_multi_devices | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/run_perftest_multi_devices b/run_perftest_multi_devices
+index d750aa6..b88faa0 100755
+--- a/run_perftest_multi_devices
++++ b/run_perftest_multi_devices
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!/bin/bash
+ # Script to launch a multi device test on seperate processes.
+ 
+ GET_HELP=0
+-- 
+2.14.1
+

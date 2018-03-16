@@ -1,0 +1,61 @@
+.TH ib_rdma_lat 1 "February 20, 2008" "perftest" "User Commands"
+
+.SH NAME
+ib_rdma_lat \- RDM latency test
+
+.SH SYNOPSIS
+.B ib_rdma_lat  [
+.I options 
+.B ] [
+.I server IP address 
+.B ]
+
+.SH DESCRIPTION 
+This program tests the latency  of RMDA write transactions.
+
+.SH OPTIONS
+.TP  
+.B -p, --port=<port>            
+listen on/connect to port <port> (default: 18515)
+.TP  
+.B -d, --ib-dev=<dev>           
+use IB device <dev> (default: first device found)
+.TP  
+.B -i, --ib-port=<port>         
+use port <port> of IB device (default: 1)
+.TP 
+.B -s, --size=<size>            
+size of message to exchange (default: 65536)
+.TP 
+.B -t, --tx-depth=<dep>         
+size of tx queue (default 100)
+.TP 
+.B -n, --iters=<iters>          
+number of exchanges (at least 2, default: 1000)
+.TP 
+.B -I, --inline_size=<size>  
+max size of message to be sent in inline mode (default 400)
+.TP
+.B -C, --report-cycles    
+report times in cpu cycle units (default microseconds)
+.TP
+.B -H, --report-histogram 
+print out all results (default print summary only)
+.TP
+.B -U, --report-unsorted  
+(implies -H) print out unsorted results (default sorted)
+.TP
+.B -c, --cma
+use the RDMA CMA to setup the RDMA connection
+.TP
+.B -V, --version                
+display version number
+
+
+.SH AUTHOR
+.TP
+Guy Coates  < gmpc@sanger.ac.uk >
+
+
+
+
