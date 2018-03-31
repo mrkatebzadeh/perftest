@@ -25,7 +25,7 @@ autom4te.cache/
 #config.h.in
 config.log
 config.status
-#config/
+config/
 #libtool
 #m4/
 #stamp-h1
