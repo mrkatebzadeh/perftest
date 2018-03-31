@@ -2951,7 +2951,18 @@ void print_report_lat (struct perftest_parameters *user_param)
 			printf("%d, %g\n", i + 1, delta[i] / cycles_rtt_quotient);
 	}
 
+	//-----------------------------------------------------------------
+	FILE *output_res = fopen("histogram", "a");
+	int idx;
+	for(idx = 0; idx < measure_cnt; idx ++){
+		fprintf(output_res,"%g\n", delta[idx]/ cycles_rtt_quotient);
+	}
+	fclose(output_res);
+	//-----------------------------------------------------------------
+	
+
 	qsort(delta, measure_cnt, sizeof *delta, cycles_compare);
+
 	measure_cnt = measure_cnt - LAT_MEASURE_TAIL;
 	median = get_median(measure_cnt, delta);
 
