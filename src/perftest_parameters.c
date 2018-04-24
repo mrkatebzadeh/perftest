@@ -2987,6 +2987,13 @@ void print_report_lat (struct perftest_parameters *user_param)
 	iters_99 = ceil((measure_cnt) * 0.99);
 	iters_99_9 = ceil((measure_cnt) * 0.999);
 
+	FILE *histogram = fopen("/home/s1691546/histogram","w");
+	printf("Writing to histogram\n");
+	for(i = 0; i < measure_cnt + LAT_MEASURE_TAIL; i++){
+		fprintf(histogram, "%f\n", delta[i] / cycles_rtt_quotient);
+	}
+	fclose(histogram);
+
 	if (user_param->output == OUTPUT_LAT)
 		printf("%lf\n",average);
 	else {
