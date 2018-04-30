@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
 	memset(&user_comm,  0, sizeof(struct perftest_comm));
 
 	user_param.verb    = SEND;
-	user_param.tst     = BW;
+	user_param.tst     = LAT_BY_BW;
 	strncpy(user_param.version, VERSION, sizeof(user_param.version));
 
 	/* Configure the parameters values according to user arguments or defalut values. */
