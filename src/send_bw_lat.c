@@ -481,11 +481,13 @@ int main(int argc, char *argv[])
 			print_report_bw_lat(&user_param,&my_bw_rep);
 
 			if (user_param.duplex && user_param.test_type != DURATION) {
-				xchg_bw_reports(&user_comm, &my_bw_rep,&rem_bw_rep,atof(user_param.rem_version));
+				xchg_bw_reports(&user_comm, &my_bw_rep,&rem_bw_rep,
+                        atof(user_param.rem_version));
 				print_full_bw_report(&user_param, &my_bw_rep, &rem_bw_rep);
 			}
 			if (ctx_hand_shake(&user_comm,&my_dest[0],&rem_dest[0])) {
-				fprintf(stderr,"Failed to exchange data between server and clients\n");
+				fprintf(stderr,"Failed to exchange data between"
+                        " server and clients\n");
 				return FAILURE;
 			}
 
@@ -496,6 +498,8 @@ int main(int argc, char *argv[])
 		}
 
 	} else if (user_param.test_method == RUN_REGULAR) {
+
+        
 
 		if (user_param.machine == CLIENT || user_param.duplex)
 			ctx_set_send_wqes(&ctx,&user_param,rem_dest);
