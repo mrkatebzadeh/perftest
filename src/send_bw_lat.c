@@ -450,7 +450,8 @@ int main(int argc, char *argv[])
 			}
 */
 			if (ctx_hand_shake(&user_comm,&my_dest[0],&rem_dest[0])) {
-				fprintf(stderr,"Failed to exchange data between server and clients\n");
+				fprintf(stderr,"Failed to exchange data between server "
+                        "and clients\n");
 				return FAILURE;
 			}
 
@@ -466,13 +467,13 @@ int main(int argc, char *argv[])
 
 			} else if (user_param.machine == CLIENT) {
 
-				if(run_iter_bw(&ctx,&user_param)) {
+				if(run_iter_bw_lat(&ctx,&user_param)) {
 					return 17;
 				}
 
 			} else	{
 
-				if(run_iter_bw_server(&ctx,&user_param)) {
+				if(run_iter_bw_lat_server(&ctx,&user_param)) {
 					return 17;
 				}
 			}
