@@ -503,7 +503,7 @@ int main(int argc, char *argv[])
             fprintf(stderr, "SIA->Failed to post receive recv_wqes\n");
             return FAILURE;
         } 
-
+/*  
 		if (user_param.machine == CLIENT || user_param.duplex)
 			ctx_set_send_wqes(&ctx,&user_param,rem_dest);
 
@@ -513,9 +513,10 @@ int main(int argc, char *argv[])
 				return FAILURE;
 			}
 		}
-
+*/
 		if (ctx_hand_shake(&user_comm,&my_dest[0],&rem_dest[0])) {
-			fprintf(stderr,"Failed to exchange data between server and clients\n");
+			fprintf(stderr,"Failed to exchange data between"
+                    " server and clients\n");
 			return FAILURE;
 		}
 
@@ -538,7 +539,8 @@ int main(int argc, char *argv[])
 		print_report_bw(&user_param,&my_bw_rep);
 
 		if (user_param.duplex && user_param.test_type != DURATION) {
-			xchg_bw_reports(&user_comm, &my_bw_rep,&rem_bw_rep,atof(user_param.rem_version));
+			xchg_bw_reports(&user_comm, &my_bw_rep,
+                    &rem_bw_rep,atof(user_param.rem_version));
 			print_full_bw_report(&user_param, &my_bw_rep, &rem_bw_rep);
 		}
 
@@ -546,15 +548,19 @@ int main(int argc, char *argv[])
 			printf(RESULT_LINE);
 			printf("\n Local results: \n");
 			printf(RESULT_LINE);
-			printf((user_param.report_fmt == MBS ? RESULT_FMT : RESULT_FMT_G));
-			printf((user_param.cpu_util_data.enable ? RESULT_EXT_CPU_UTIL : RESULT_EXT));
+			printf((user_param.report_fmt == MBS ? 
+                        RESULT_FMT : RESULT_FMT_G));
+			printf((user_param.cpu_util_data.enable ? 
+                        RESULT_EXT_CPU_UTIL : RESULT_EXT));
 			print_full_bw_report(&user_param, &my_bw_rep, NULL);
 			printf(RESULT_LINE);
 
 			printf("\n Remote results: \n");
 			printf(RESULT_LINE);
-			printf((user_param.report_fmt == MBS ? RESULT_FMT : RESULT_FMT_G));
-			printf((user_param.cpu_util_data.enable ? RESULT_EXT_CPU_UTIL : RESULT_EXT));
+			printf((user_param.report_fmt == MBS ? 
+                        RESULT_FMT : RESULT_FMT_G));
+			printf((user_param.cpu_util_data.enable ? 
+                        RESULT_EXT_CPU_UTIL : RESULT_EXT));
 			print_full_bw_report(&user_param, &rem_bw_rep, NULL);
 		}
 	} else if (user_param.test_method == RUN_INFINITELY) {
@@ -571,21 +577,24 @@ int main(int argc, char *argv[])
 		}
 
 		if (ctx_hand_shake(&user_comm,&my_dest[0],&rem_dest[0])) {
-			fprintf(stderr,"Failed to exchange data between server and clients\n");
+			fprintf(stderr,"Failed to exchange data between"
+                    " server and clients\n");
 			return FAILURE;
 		}
 
 		if (user_param.machine == CLIENT) {
 
 			if(run_iter_bw_infinitely(&ctx,&user_param)) {
-				fprintf(stderr," Error occured while running infinitely! aborting ...\n");
+				fprintf(stderr," Error occured while running
+                        infinitely! aborting ...\n");
 				return FAILURE;
 			}
 
 		} else if (user_param.machine == SERVER) {
 
 			if(run_iter_bw_infinitely_server(&ctx,&user_param)) {
-				fprintf(stderr," Error occured while running infinitely on server! aborting ...\n");
+				fprintf(stderr," Error occured while running
+                        infinitely on server! aborting ...\n");
 				return FAILURE;
 			}
 		}
@@ -599,7 +608,8 @@ int main(int argc, char *argv[])
 	}
 
 	if (ctx_close_connection(&user_comm,&my_dest[0],&rem_dest[0])) {
-		fprintf(stderr," Failed to close connection between server and client\n");
+		fprintf(stderr," Failed to close connection between
+                server and client\n");
 		fprintf(stderr," Trying to close this side resources\n");
 	}
 
@@ -621,7 +631,8 @@ int main(int argc, char *argv[])
 		return FAILURE;
 	}
 
-	if (!user_param.is_msgrate_limit_passed && (user_param.is_limit_bw == ON )) {
+	if (!user_param.is_msgrate_limit_passed && 
+            (user_param.is_limit_bw == ON )) {
 		fprintf(stderr,"Error: Msg rate  is below msg_rate limit\n");
 		return FAILURE;
 	}
