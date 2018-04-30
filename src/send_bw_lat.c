@@ -165,16 +165,19 @@ static int send_destroy_ctx(
  ******************************************************************************/
 int main(int argc, char *argv[])
 {
-	struct ibv_device		*ib_dev = NULL;
-	struct pingpong_context  	ctx;
-	struct pingpong_dest	 	*my_dest  = NULL;
-	struct pingpong_dest		*rem_dest = NULL;
-	struct perftest_parameters  	user_param;
-	struct perftest_comm		user_comm;
-	struct mcast_parameters     	mcg_params;
-	struct bw_report_data		my_bw_rep, rem_bw_rep;
-	int                      	ret_parser,i = 0;
-	int                      	size_max_pow = 24;
+	int                         i = 0;
+	int                         size_max_pow = 24;
+	int                         ret_val;
+	struct report_options       report;
+	struct pingpong_context     ctx;
+	struct pingpong_dest        *my_dest  = NULL;
+	struct pingpong_dest        *rem_dest = NULL;
+	struct mcast_parameters     mcg_params;
+	struct ibv_device           *ib_dev = NULL;
+	struct perftest_parameters  user_param;
+	struct perftest_comm        user_comm;
+	struct bw_report_data       my_bw_rep, rem_bw_rep;
+	int                         ret_parser;
 
 	/* init default values to user's parameters */
 	memset(&ctx, 0,sizeof(struct pingpong_context));
