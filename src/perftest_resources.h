@@ -484,6 +484,20 @@ int ctx_set_credit_wqes(struct pingpong_context *ctx,
  */
 int run_iter_bw(struct pingpong_context *ctx,struct perftest_parameters *user_param);
 
+/* run_iter_bw_lat.
+ *
+ * Description :
+ *
+ *	The main testing method in BW tests. Uses sampling  for latency measurment.
+ *
+ * Parameters :
+ *
+ *	ctx     - Test Context.
+ *	user_param  - user_parameters struct for this test.
+ *
+ */
+int run_iter_bw_lat(struct pingpong_context *ctx,struct perftest_parameters *user_param);
+
 /* run_iter_bw_infinitely
  *
  * Description :
@@ -525,6 +539,21 @@ int run_iter_bw_infinitely_server(struct pingpong_context *ctx, struct perftest_
  *
  */
 int run_iter_bw_server(struct pingpong_context *ctx, struct perftest_parameters *user_param);
+
+/* run_iter_bw_lat_server.
+ *
+ * Description :
+ *
+ *	The main testing method for Receiver in SEND test. Send echo response to the 
+ *	client for each sample packet.
+ *
+ * Parameters :
+ *
+ *	ctx     - Test Context.
+ *	user_param  - user_parameters struct for this test.
+ *
+ */
+int run_iter_bw_lat_server(struct pingpong_context *ctx, struct perftest_parameters *user_param);
 
 /* run_iter_bi.
  *
