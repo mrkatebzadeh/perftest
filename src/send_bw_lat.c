@@ -499,7 +499,10 @@ int main(int argc, char *argv[])
 
 	} else if (user_param.test_method == RUN_REGULAR) {
 
-        
+        if(ctx_set_recv_wqes(&ctx, &user_param)){
+            fprintf(stderr, "SIA->Failed to post receive recv_wqes\n");
+            return FAILURE;
+        } 
 
 		if (user_param.machine == CLIENT || user_param.duplex)
 			ctx_set_send_wqes(&ctx,&user_param,rem_dest);
