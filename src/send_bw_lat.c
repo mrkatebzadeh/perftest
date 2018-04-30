@@ -180,10 +180,10 @@ int main(int argc, char *argv[])
 	int                         ret_parser;
 
 	/* init default values to user's parameters */
-	memset(&ctx, 0,sizeof(struct pingpong_context));
-	memset(&user_param, 0 , sizeof(struct perftest_parameters));
-	memset(&mcg_params, 0 , sizeof(struct mcast_parameters));
-	memset(&user_comm, 0,sizeof(struct perftest_comm));
+	memset(&ctx,        0, sizeof(struct pingpong_context));
+	memset(&user_param, 0, sizeof(struct perftest_parameters));
+	memset(&mcg_params, 0, sizeof(struct mcast_parameters));
+	memset(&user_comm,  0, sizeof(struct perftest_comm));
 
 	user_param.verb    = SEND;
 	user_param.tst     = BW;
