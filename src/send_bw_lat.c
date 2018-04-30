@@ -197,13 +197,20 @@ int main(int argc, char *argv[])
 			fprintf(stderr," Parser function exited with Error\n");
 		return FAILURE;
 	}
-	if((user_param.connection_type == DC || user_param.use_xrc) && user_param.duplex) {
+
+	if((user_param.connection_type == DC || user_param.use_xrc) 
+            && user_param.duplex) {
 		user_param.num_of_qps *= 2;
 	}
-	/* Checking that the user did not run with RawEth. for this we have raw_etherent_bw test. */
+
+	/* Checking that the user did not run with RawEth. for this we have 
+     * raw_etherent_bw test. 
+     * */
 	if (user_param.connection_type == RawEth) {
-		fprintf(stderr," This test cannot run Raw Ethernet QPs (you have chosen RawEth as connection type\n");
-		fprintf(stderr," For this we have raw_ethernet_bw test in this package.\n");
+		fprintf(stderr," This test cannot run Raw Ethernet QPs (you have chosen"
+            "RawEth as connection type\n");
+		fprintf(stderr," For this we have raw_ethernet_bw test in this package"
+                ".\n");
 		return FAILURE;
 	}
 
@@ -236,7 +243,9 @@ int main(int argc, char *argv[])
 		return FAILURE;
 	}
 
-	/* copy the relevant user parameters to the comm struct + creating rdma_cm resources. */
+	/* copy the relevant user parameters to the comm struct + creating 
+     * rdma_cm resources. 
+     * */
 	if (create_comm_struct(&user_comm,&user_param)) {
 		fprintf(stderr," Unable to create RDMA_CM resources\n");
 		return FAILURE;
@@ -297,7 +306,9 @@ int main(int argc, char *argv[])
 
 	} else {
 
-		/* create all the basic IB resources (data buffer, PD, MR, CQ and events channel) */
+		/* create all the basic IB resources (data buffer, PD,
+         *  MR, CQ and events channel) 
+         *  */
 		if (ctx_init(&ctx,&user_param)) {
 			fprintf(stderr, " Couldn't create IB resources\n");
 			return FAILURE;
@@ -305,7 +316,8 @@ int main(int argc, char *argv[])
 	}
 
 	/* Set up the Connection. */
-	if (send_set_up_connection(&ctx,&user_param,my_dest,&mcg_params,&user_comm)) {
+	if (send_set_up_connection(&ctx, &user_param, my_dest, &mcg_params, 
+                &user_comm)) {
 		fprintf(stderr," Unable to set up socket connection\n");
 		return FAILURE;
 	}
@@ -324,7 +336,8 @@ int main(int argc, char *argv[])
 
 		/* shaking hands and gather the other side info. */
 		if (ctx_hand_shake(&user_comm,&my_dest[i],&rem_dest[i])) {
-			fprintf(stderr,"Failed to exchange data between server and clients\n");
+			fprintf(stderr,"Failed to exchange data between"
+                    " server and clients\n");
 			return FAILURE;
 		}
 
@@ -340,14 +353,16 @@ int main(int argc, char *argv[])
 	}
 
 	/* If credit for available recieve buffers is necessary,
-	 * the credit sending is done via RDMA WRITE ops and the ctx_hand_shake above
-	 * is used to exchange the rkeys and buf addresses for the RDMA WRITEs
+	 * the credit sending is done via RDMA WRITE ops and the 
+     * ctx_hand_shake above is used to exchange the rkeys and buf 
+     * addresses for the RDMA WRITEs
 	 */
 	if (ctx.send_rcredit)
 		ctx_set_credit_wqes(&ctx,&user_param,rem_dest);
 
 	/* Joining the Send side port the Mcast gid */
-	if (user_param.use_mcg && (user_param.machine == CLIENT || user_param.duplex)) {
+	if (user_param.use_mcg && 
+            (user_param.machine == CLIENT || user_param.duplex)) {
 
 		memcpy(mcg_params.mgid.raw, rem_dest[0].gid.raw, 16);
 		if (set_mcast_group(&ctx,&user_param,&mcg_params)) {
@@ -357,8 +372,9 @@ int main(int argc, char *argv[])
 		/*
 		 * The next stall in code (50 ms sleep) is a work around for fixing the
 		 * the bug this test had in Multicast for the past 1 year.
-		 * It appears, that when a switch involved, it takes ~ 10 ms for the join
-		 * request to propogate on the IB fabric, thus we need to wait for it.
+		 * It appears, that when a switch involved, it takes ~ 10 ms for the 
+         * join request to propogate on the IB fabric, thus we need to 
+         * wait for it.
 		 * what happened before this fix was client reaching the post_send
 		 * code segment in about 350 ns from here, and the switch(es) dropped
 		 * the packet because join request wasn't finished.
@@ -397,34 +413,42 @@ int main(int argc, char *argv[])
 	if (user_param.output == FULL_VERBOSITY) {
 		if (user_param.report_per_port) {
 			printf(RESULT_LINE_PER_PORT);
-			printf((user_param.report_fmt == MBS ? RESULT_FMT_PER_PORT : RESULT_FMT_G_PER_PORT));
+			printf((user_param.report_fmt == MBS ? 
+                        RESULT_FMT_PER_PORT : RESULT_FMT_G_PER_PORT));
 		}
 		else {
 			printf(RESULT_LINE);
-			printf((user_param.report_fmt == MBS ? RESULT_FMT : RESULT_FMT_G));
+			printf((user_param.report_fmt == MBS ? 
+                        RESULT_FMT : RESULT_FMT_G));
 		}
-		printf((user_param.cpu_util_data.enable ? RESULT_EXT_CPU_UTIL : RESULT_EXT));
+		printf((user_param.cpu_util_data.enable ? 
+                    RESULT_EXT_CPU_UTIL : RESULT_EXT));
 	}
 
 	if (user_param.test_method == RUN_ALL) {
 
 		if (user_param.connection_type == UD)
-			size_max_pow =  (int)UD_MSG_2_EXP(MTU_SIZE(user_param.curr_mtu)) + 1;
+			size_max_pow = (int)UD_MSG_2_EXP(MTU_SIZE(user_param.curr_mtu))+1;
 
 		for (i = 1; i < size_max_pow ; ++i) {
 
 			user_param.size = (uint64_t)1 << i;
 
+            if(ctx_set_recv_wqes(&ctx, &user_param)){
+                printf(stderr, "SIA->Failed to post receive recv_wqes\n");
+                return FAILURE;
+            }
+
 			if (user_param.machine == CLIENT || user_param.duplex)
 				ctx_set_send_wqes(&ctx,&user_param,rem_dest);
-
+/*  
 			if (user_param.machine == SERVER || user_param.duplex) {
 				if (ctx_set_recv_wqes(&ctx,&user_param)) {
 					fprintf(stderr," Failed to post receive recv_wqes\n");
 					return FAILURE;
 				}
 			}
-
+*/
 			if (ctx_hand_shake(&user_comm,&my_dest[0],&rem_dest[0])) {
 				fprintf(stderr,"Failed to exchange data between server and clients\n");
 				return FAILURE;
