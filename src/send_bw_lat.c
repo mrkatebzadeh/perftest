@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
 {
 	int                         i = 0;
 	int                         size_max_pow = 24;
-	int                         ret_val;
+	int                         ret_parser;
 	struct report_options       report;
 	struct pingpong_context     ctx;
 	struct pingpong_dest        *my_dest  = NULL;
@@ -177,7 +177,6 @@ int main(int argc, char *argv[])
 	struct perftest_parameters  user_param;
 	struct perftest_comm        user_comm;
 	struct bw_report_data       my_bw_rep, rem_bw_rep;
-	int                         ret_parser;
 
 	/* init default values to user's parameters */
 	memset(&ctx,        0, sizeof(struct pingpong_context));
@@ -189,7 +188,9 @@ int main(int argc, char *argv[])
 	user_param.tst     = LAT_BY_BW;
 	strncpy(user_param.version, VERSION, sizeof(user_param.version));
 
-	/* Configure the parameters values according to user arguments or defalut values. */
+	/* Configure the parameters values according to user arguments or 
+     * defalut values. 
+     * */
 	ret_parser = parser(&user_param,argv,argc);
 	if (ret_parser) {
 		if (ret_parser != VERSION_EXIT && ret_parser != HELP_EXIT)
