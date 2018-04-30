@@ -478,7 +478,7 @@ int main(int argc, char *argv[])
 				}
 			}
 
-			print_report_bw(&user_param,&my_bw_rep);
+			print_report_bw_lat(&user_param,&my_bw_rep);
 
 			if (user_param.duplex && user_param.test_type != DURATION) {
 				xchg_bw_reports(&user_comm, &my_bw_rep,&rem_bw_rep,atof(user_param.rem_version));
