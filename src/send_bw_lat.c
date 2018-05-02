@@ -435,7 +435,7 @@ int main(int argc, char *argv[])
 			user_param.size = (uint64_t)1 << i;
 
             if(ctx_set_recv_wqes(&ctx, &user_param)){
-                printf(stderr, "SIA->Failed to post receive recv_wqes\n");
+                fprintf(stderr, "SIA->Failed to post receive recv_wqes\n");
                 return FAILURE;
             }
 
@@ -585,16 +585,16 @@ int main(int argc, char *argv[])
 		if (user_param.machine == CLIENT) {
 
 			if(run_iter_bw_infinitely(&ctx,&user_param)) {
-				fprintf(stderr," Error occured while running
-                        infinitely! aborting ...\n");
+				fprintf(stderr," Error occured while running "
+                        "infinitely! aborting ...\n");
 				return FAILURE;
 			}
 
 		} else if (user_param.machine == SERVER) {
 
 			if(run_iter_bw_infinitely_server(&ctx,&user_param)) {
-				fprintf(stderr," Error occured while running
-                        infinitely on server! aborting ...\n");
+				fprintf(stderr," Error occured while running "
+                        "infinitely on server! aborting ...\n");
 				return FAILURE;
 			}
 		}
@@ -608,8 +608,8 @@ int main(int argc, char *argv[])
 	}
 
 	if (ctx_close_connection(&user_comm,&my_dest[0],&rem_dest[0])) {
-		fprintf(stderr," Failed to close connection between
-                server and client\n");
+		fprintf(stderr," Failed to close connection between "
+                "server and client\n");
 		fprintf(stderr," Trying to close this side resources\n");
 	}
 
