@@ -638,7 +638,7 @@ void print_full_bw_report (struct perftest_parameters *user_param, struct bw_rep
  *   user_param  - the parameters parameters.
  *
  */
-void print_report_bw_lat (struct perftest_parameters *user_param);
+void print_report_bw_lat (struct perftest_parameters *user_param, struct bw_report_data *my_bw_rep);
 
 /* print_report_lat
  *
