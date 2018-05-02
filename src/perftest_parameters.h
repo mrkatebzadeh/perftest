@@ -627,6 +627,19 @@ void print_report_bw (struct perftest_parameters *user_param, struct bw_report_d
  */
 void print_full_bw_report (struct perftest_parameters *user_param, struct bw_report_data *my_bw_rep, struct bw_report_data *rem_bw_rep);
 
+/* print_report_bw_lat
+ *
+ * Description : Print the min/max/median latency samples taken from a bandwith
+ *test.
+ * 				 It also support a unsorted/histogram report of all samples.
+ *
+ * Parameters :
+ *
+ *   user_param  - the parameters parameters.
+ *
+ */
+void print_report_bw_lat (struct perftest_parameters *user_param);
+
 /* print_report_lat
  *
  * Description : Print the min/max/median latency samples taken from a latency test.
