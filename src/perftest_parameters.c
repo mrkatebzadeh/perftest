@@ -1176,7 +1176,7 @@ static void force_dependecies(struct perftest_parameters *user_param)
 	}
 
 	if (user_param->rate_limit_type == SW_RATE_LIMIT) {
-		if (user_param->tst != BW || user_param->verb == ATOMIC || (user_param->verb == SEND && user_param->duplex)) {
+		if ((user_param->tst != BW && user_param->tst != LAT_BY_BW) || user_param->verb == ATOMIC || (user_param->verb == SEND && user_param->duplex)) {
 			printf(RESULT_LINE);
 			fprintf(stderr,"SW Rate limiter cann't be executed on non-BW, ATOMIC or bidirectional SEND tests\n");
 			exit(1);
@@ -2821,6 +2821,16 @@ void print_report_bw (struct perftest_parameters *user_param, struct bw_report_d
 	if (free_my_bw_rep == 1) {
 		free(my_bw_rep);
 	}
+}
+
+/******************************************************************************
+ *
+ ******************************************************************************/
+
+void print_report_bw_lat (struct perftest_parameters *user_param,
+        struct bw_report_data *my_bw_rep)
+{
+    //TODO
 }
 
 /******************************************************************************
