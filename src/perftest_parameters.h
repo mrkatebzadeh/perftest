@@ -168,6 +168,15 @@
 #define MIN_FS_PORT		(5000)
 #define MAX_FS_PORT		(65536)
 
+#define DEBUG 1
+
+#ifdef DEBUG
+    #define DEBUG_PRINT(message)\
+        do { fprintf(stderr, "### DEBUG %s:%d:%s(): " message, __FILE__, \
+                                __LINE__, __func__); } while (0)
+#else
+    #define DEBUG_PRINT(message)
+#endif
 
 #define RESULT_LINE "---------------------------------------------------------------------------------------\n"
 
